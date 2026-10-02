@@ -27,7 +27,161 @@
             // Why is inheritance better than duplicating the same code in multiple classes? --> because it provides code maintainability, reusability the existing functions without having to rewrite the same code, reduces redundancy and makes it easier to manage and update the code. 
             #endregion
 
+            #region Part 02 : Practical 
+            DeliveryCenter deliveryCenter = new DeliveryCenter();
 
+            Console.Write("Enter Delivery center Name: ");
+            deliveryCenter.CenterName = Console.ReadLine()!;
+            Console.WriteLine();
+
+            string trackingCode;
+            string description;
+            decimal weight ;
+            decimal deliveryFee;
+            string city;
+            string street;
+            int number ;
+            DeliveryAddress destination;
+            bool isAdded;
+
+            Console.WriteLine("Enter Standard Shipment Details:");
+            Console.Write("Tracking Code: ");
+            trackingCode = Console.ReadLine()!;
+            Console.Write("Description: ");
+            description = Console.ReadLine()!;
+            Console.Write("Weight: ");
+            weight = decimal.Parse(Console.ReadLine()!);
+            Console.Write("Delivery Fee: ");
+            deliveryFee = decimal.Parse(Console.ReadLine()!);
+            Console.Write("City: ");
+            city = Console.ReadLine()!;
+            Console.Write("Street: ");
+            street = Console.ReadLine()!;
+            Console.Write("Bulding Number: ");
+            number = int.Parse(Console.ReadLine()!);
+            destination = new DeliveryAddress(city, street, number);
+            StandardShipment standardShipment = new StandardShipment(trackingCode, description, weight, deliveryFee, destination);
+            isAdded = deliveryCenter.AddShipment(standardShipment);
+            if (isAdded)
+            {
+                Console.WriteLine("StandardShipment added successfully.");
+                Console.WriteLine();
+
+            }
+            else
+            {
+                Console.WriteLine("Failed to add Standard shipment.");
+                Console.WriteLine();
+
+            }
+
+            Console.WriteLine("Enter Express Shipment Details:");
+            Console.Write("Tracking Code: ");
+            trackingCode = Console.ReadLine()!;
+            Console.Write("Description: ");
+            description = Console.ReadLine()!;
+            Console.Write("Weight: ");
+            weight = decimal.Parse(Console.ReadLine()!);
+            Console.Write("Delivery Fee: ");
+            deliveryFee = decimal.Parse(Console.ReadLine()!);
+            Console.Write("City: ");
+            city = Console.ReadLine()!;
+            Console.Write("Street: ");
+            street = Console.ReadLine()!;
+            Console.Write("Bulding Number: ");
+            number = int.Parse(Console.ReadLine()!);
+            destination = new DeliveryAddress(city, street, number);
+            Console.Write("ExtraFee: ");
+            decimal extraFee = decimal.Parse(Console.ReadLine()!);
+            ExpressShipment expressShipment = new ExpressShipment(trackingCode, description, weight, deliveryFee, destination, extraFee);
+            isAdded = deliveryCenter.AddShipment(expressShipment);
+            if (isAdded)
+            {
+                Console.WriteLine("Express Shipment added successfully.");
+                Console.WriteLine();
+
+            }
+            else
+            {
+                Console.WriteLine("Failed to add Expressshipment.");
+                Console.WriteLine();
+
+            }
+
+            Console.WriteLine("Enter International Shipment Details:");
+            Console.Write("Tracking Code: ");
+            trackingCode = Console.ReadLine()!;
+            Console.Write("Description: ");
+            description = Console.ReadLine()!;
+            Console.Write("Weight: ");
+            weight = decimal.Parse(Console.ReadLine()!);
+            Console.Write("Delivery Fee: ");
+            deliveryFee = decimal.Parse(Console.ReadLine()!);
+            Console.Write("City: ");
+            city = Console.ReadLine()!;
+            Console.Write("Street: ");
+            street = Console.ReadLine()!;
+            Console.Write("Bulding Number: ");
+            number = int.Parse(Console.ReadLine()!);
+            destination = new DeliveryAddress(city, street, number);
+            Console.Write("CustomsFee: ");
+            decimal customsFee = decimal.Parse(Console.ReadLine()!);
+            Console.Write("DestinationCountry: ");
+            String destinationCountry = Console.ReadLine()!;
+            InternationalShipment internationalShipment = new InternationalShipment(trackingCode, description, weight, deliveryFee, destination, destinationCountry, customsFee );
+            isAdded = deliveryCenter.AddShipment(internationalShipment);
+            if (isAdded)
+            {
+                Console.WriteLine("International Shipment added successfully.");
+                Console.WriteLine();
+
+            }
+            else
+            {
+                Console.WriteLine("Failed to add International shipment.");
+                Console.WriteLine();
+
+            }
+
+            Console.WriteLine("==========================================");
+            Console.WriteLine($"Delivery Center : {deliveryCenter.CenterName}");
+            Console.WriteLine("==========================================");
+            deliveryCenter.PrintAllShipments();
+
+            Console.Write("Enter Tracking Code To Search: ");
+            string searchTrackingCode = Console.ReadLine()!;
+            Shipment SearchedShipmint = deliveryCenter[searchTrackingCode];
+            if (SearchedShipmint != null)
+            {
+                Console.WriteLine("Shipment found:");
+                SearchedShipmint.PrintShipment();
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("Shipment not found.");
+                Console.WriteLine();
+            }
+
+            Console.Write("Enter Tracking Code To Remove:");
+            String trackingCodeToRemove = Console.ReadLine()!;
+            bool isRemoved = deliveryCenter.RemoveShipment(trackingCodeToRemove);
+            if (isRemoved)
+            {
+                Console.WriteLine("Shipment removed successfully.");
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("Failed to remove Shipment.");
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("==========================================");
+            Console.WriteLine($"Remaining Shipments");
+            Console.WriteLine("==========================================");
+            deliveryCenter.PrintAllShipments();
+            #endregion
         }
     }
 }
