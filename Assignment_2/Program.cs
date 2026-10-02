@@ -9,8 +9,6 @@
             // i have solved and submittedthe indexers section in assignment 1 
             #endregion
 
-
-
             #region Question 1
             #region What is the difference between a class and a struct?
             // class --> reference type , copy the reference of the object to another variable , stored in heap memory , support inheritance and polymorphism , can be null , default constructor is provided if no constructor is defined in the class , suitable for large data
@@ -19,8 +17,17 @@
 
             #region Why are classes more suitable than structs for large applications?
             // classes are more suitable than structs for large applications because they are reference types and can be easily managed in memory. They also support inheritance and polymorphism, which allows for more flexible and reusable code. Structs, on the other hand, are value types and are better suited for small data structures that do not require inheritance or polymorphism.
-            #endregion 
             #endregion
+            #endregion
+
+            #region Question 2
+            // Which class is the parent class? --> Shipment is the parent class
+            // Which class is the child class? --> ExpressShipment is the child class
+            // What members are inherited by ExpressShipment? --> TrackingCode 
+            // Why is inheritance better than duplicating the same code in multiple classes? --> because it provides code maintainability, reusability the existing functions without having to rewrite the same code, reduces redundancy and makes it easier to manage and update the code. 
+            #endregion
+
+
         }
     }
 }
